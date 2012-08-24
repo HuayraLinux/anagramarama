@@ -1,0 +1,7 @@
+anagramarama (0.4-1) wizy; urgency=low
+
+  * Initial release.
+  * Added a wordlist and a background for es_AR.
+  * Added a patch to initialize sounds and wordlists from usr/share/games.
+
+ -- Mauro Lizaur <mauro@debian.org>  Thu, 23 Aug 2012 16:55:30 -0300

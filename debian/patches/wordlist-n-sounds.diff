@@ -1,0 +1,37 @@
+This patch allows anagramarama to load the files from usr/share/games following the Debian Policy.
+--- a/src/ag.c
++++ b/src/ag.c
+@@ -249,15 +249,15 @@
+ static void
+ bufferSounds(struct sound **soundCache)
+ {
+-	pushSound(soundCache, "click-answer", "audio/click-answer.wav");
+-	pushSound(soundCache, "click-shuffle", "audio/click-shuffle.wav");
+-	pushSound(soundCache, "foundbig", "audio/foundbig.wav");
+-	pushSound(soundCache, "found", "audio/found.wav");
+-	pushSound(soundCache, "clear", "audio/clearword.wav");
+-	pushSound(soundCache, "duplicate", "audio/duplicate.wav");
+-	pushSound(soundCache, "badword", "audio/badword.wav");
+-	pushSound(soundCache, "shuffle", "audio/shuffle.wav");
+-	pushSound(soundCache, "clock-tick", "audio/clock-tick.wav");
++	pushSound(soundCache, "click-answer", "/usr/share/games/anagramarama/audio/click-answer.wav");
++	pushSound(soundCache, "click-shuffle", "/usr/share/games/anagramarama/audio/click-shuffle.wav");
++	pushSound(soundCache, "foundbig", "/usr/share/games/anagramarama/audio/foundbig.wav");
++	pushSound(soundCache, "found", "/usr/share/games/anagramarama/audio/found.wav");
++	pushSound(soundCache, "clear", "/usr/share/games/anagramarama/audio/clearword.wav");
++	pushSound(soundCache, "duplicate", "/usr/share/games/anagramarama/audio/duplicate.wav");
++	pushSound(soundCache, "badword", "/usr/share/games/anagramarama/audio/badword.wav");
++	pushSound(soundCache, "shuffle", "/usr/share/games/anagramarama/audio/shuffle.wav");
++	pushSound(soundCache, "clock-tick", "/usr/share/games/anagramarama/audio/clock-tick.wav");
+ }
+ 
+ /***********************************************************
+@@ -1663,7 +1663,7 @@
+ 	/* identify the resource locale */
+ 	init_locale(argc, argv);
+     if (language[strlen(language)-1] != '/')
+-        strcat(language, "/");
++        strcat(language, "/usr/share/games/anagramarama/");
+ 
+ 	/* create dictionary */
+     strcpy(txt, language);
