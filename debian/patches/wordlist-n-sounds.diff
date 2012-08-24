@@ -26,12 +26,21 @@ This patch allows anagramarama to load the files from usr/share/games following 
  }
  
  /***********************************************************
-@@ -1663,7 +1663,7 @@
- 	/* identify the resource locale */
- 	init_locale(argc, argv);
-     if (language[strlen(language)-1] != '/')
--        strcat(language, "/");
-+        strcat(language, "/usr/share/games/anagramarama/");
+@@ -1584,7 +1584,7 @@
+ {
+     char *lang = NULL, *p = NULL;
  
- 	/* create dictionary */
-     strcpy(txt, language);
+-	strcpy(language,"i18n/");
++	strcpy(language,"/usr/share/games/anagramarama/i18n/");
+ 	if (argc == 2) {
+ 		strcat(language, argv[1]);
+         if (is_valid_locale(language))
+@@ -1593,7 +1593,7 @@
+ 
+     lang = getenv("LANG");
+     if (lang != NULL) {
+-        strcpy(language,"i18n/");
++        strcpy(language,"/usr/share/games/anagramarama/i18n/");
+         strcat(language, lang);
+         if (is_valid_locale(language))
+             return;
