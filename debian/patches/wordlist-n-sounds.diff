@@ -1,6 +1,15 @@
 This patch allows anagramarama to load the files from usr/share/games following the Debian Policy.
 --- a/src/ag.c
 +++ b/src/ag.c
+@@ -104,7 +104,7 @@
+ char shuffle[8] = SPACE_FILLED_CHARS;
+ char answer[8]  = SPACE_FILLED_CHARS;
+ char language[64];
+-char txt[50];
++char txt[250];
+ char rootWord[9];
+ int updateAnswers = 0;
+ int startNewGame = 0;
 @@ -249,15 +249,15 @@
  static void
  bufferSounds(struct sound **soundCache)
