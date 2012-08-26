@@ -1,3 +1,11 @@
+anagramarama (0.4-2) wizy; urgency=low
+
+  * Fixed debian/copyright
+  * Added icon for menu
+  * Added manpage written by Lukas Fittl
+
+ -- Mauro Lizaur <mauro@debian.org>  Sat, 25 Aug 2012 17:34:53 -0300
+
 anagramarama (0.4-1) wizy; urgency=low
 
   * Initial release.

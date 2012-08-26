@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Version=1.4
+Name=Anagramarama
+Exec=anagramarama
+Terminal=false
+Categories=Game;KidsGame;LogicGame;
+Comment=A multi-platform, multi-lingual anagram finding game.
+Icon=
