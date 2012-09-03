@@ -1,3 +1,10 @@
+anagramarama (0.4-3) wizy; urgency=low
+
+  * Inclui los parches publicados por el mantenedor de anagramara en ubuntu
+    Lukas Fittl <lfittl@ixios-software.com>.
+
+ -- Mauro Lizaur <mauro@debian.org>  Sun, 02 Sep 2012 23:49:02 -0300
+
 anagramarama (0.4-2) wizy; urgency=low
 
   * Fixed debian/copyright
