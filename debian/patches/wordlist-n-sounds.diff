@@ -1,7 +1,9 @@
 This patch allows anagramarama to load the files from usr/share/games following the Debian Policy.
---- a/src/ag.c
-+++ b/src/ag.c
-@@ -104,7 +104,7 @@
+Index: anagramarama-0.4/src/ag.c
+===================================================================
+--- anagramarama-0.4.orig/src/ag.c	2012-09-03 03:10:44.000000000 +0000
++++ anagramarama-0.4/src/ag.c	2012-09-03 03:19:37.000000000 +0000
+@@ -104,13 +104,14 @@
  char shuffle[8] = SPACE_FILLED_CHARS;
  char answer[8]  = SPACE_FILLED_CHARS;
  char language[64];
@@ -10,7 +12,14 @@ This patch allows anagramarama to load the files from usr/share/games following 
  char rootWord[9];
  int updateAnswers = 0;
  int startNewGame = 0;
-@@ -249,15 +249,16 @@
+ int solvePuzzle = 0;
+ int shuffleRemaining = 0;
+ int clearGuess = 0;
++int clearLastLetter = 0;
+ 
+ time_t gameStart = 0;
+ time_t gameTime = 0;
+@@ -249,15 +250,16 @@
  static void
  bufferSounds(struct sound **soundCache)
  {
@@ -36,7 +45,7 @@ This patch allows anagramarama to load the files from usr/share/games following 
  }
  
  /***********************************************************
-@@ -505,6 +506,7 @@
+@@ -505,6 +507,7 @@
  	}
  
  	if (!foundWord) {
@@ -44,7 +53,7 @@ This patch allows anagramarama to load the files from usr/share/games following 
  		Mix_PlayChannel(-1, getSound("badword"),0);
  	}
  }
-@@ -591,7 +593,12 @@
+@@ -591,7 +594,12 @@
  
  		switch(keyedLetter){
  
@@ -58,7 +67,7 @@ This patch allows anagramarama to load the files from usr/share/games following 
  				/* clear has been pressed */
  				clearGuess = 1;
  				break;
-@@ -772,6 +779,50 @@
+@@ -772,6 +780,50 @@
  
  
  /***********************************************************
@@ -109,7 +118,7 @@ This patch allows anagramarama to load the files from usr/share/games following 
  synopsis: display the score graphic
  
  inputs: screen - the SDL_Surface to display the image
-@@ -1482,6 +1533,13 @@
+@@ -1482,6 +1534,13 @@
  			clearGuess = 0;
  		}
  
@@ -123,7 +132,7 @@ This patch allows anagramarama to load the files from usr/share/games following 
  		if (quitGame) {
  			done = 1;
  		}
-@@ -1517,7 +1575,9 @@
+@@ -1517,7 +1576,9 @@
  	strcat(buffer, "wordlist.txt");
  	if ((fp = fopen(buffer, "r")) != NULL)
  		fclose(fp);
@@ -133,7 +142,7 @@ This patch allows anagramarama to load the files from usr/share/games following 
  	return (fp != NULL);
  }
  
-@@ -1550,7 +1610,9 @@
+@@ -1550,7 +1611,9 @@
  	FILE *fp = NULL;
  	char line[80], *p;
  	if ((fp = fopen(path, "r")) != NULL) {
@@ -143,7 +152,7 @@ This patch allows anagramarama to load the files from usr/share/games following 
  		while (!feof(fp)) {
  			if ((p = fgets(line, sizeof(line), fp)) != NULL) {
  				int i;
-@@ -1584,6 +1646,7 @@
+@@ -1584,6 +1647,7 @@
  {
      char *lang = NULL, *p = NULL;
  
@@ -151,7 +160,7 @@ This patch allows anagramarama to load the files from usr/share/games following 
  	strcpy(language,"i18n/");
  	if (argc == 2) {
  		strcat(language, argv[1]);
-@@ -1593,6 +1656,7 @@
+@@ -1593,6 +1657,7 @@
  
      lang = getenv("LANG");
      if (lang != NULL) {
@@ -159,7 +168,7 @@ This patch allows anagramarama to load the files from usr/share/games following 
          strcpy(language,"i18n/");
          strcat(language, lang);
          if (is_valid_locale(language))
-@@ -1619,7 +1683,9 @@
+@@ -1619,7 +1684,9 @@
          strcat(language, "_");
          GetLocaleInfo(lcid, LOCALE_SISO3166CTRYNAME, 
                        language + strlen(language), sizeof(language));
@@ -169,8 +178,10 @@ This patch allows anagramarama to load the files from usr/share/games following 
          if (is_valid_locale(language))
              return;
          *p = 0;
---- a/makefile.linux
-+++ b/makefile.linux
+Index: anagramarama-0.4/makefile.linux
+===================================================================
+--- anagramarama-0.4.orig/makefile.linux	2012-09-03 03:10:44.000000000 +0000
++++ anagramarama-0.4/makefile.linux	2012-09-03 03:10:44.000000000 +0000
 @@ -6,6 +6,8 @@
  CFLAGS +=-O9 -funroll-loops -fomit-frame-pointer
  LDFLAGS=`sdl-config --libs` -lSDL_mixer
