@@ -1,3 +1,9 @@
+anagramarama (0.4-4) wizy; urgency=low
+
+  * Added utf8 symlinks for each lang.
+
+ -- Mauro Lizaur <mauro@debian.org>  Tue, 04 Sep 2012 13:47:30 -0300
+
 anagramarama (0.4-3) wizy; urgency=low
 
   * Inclui los parches publicados por el mantenedor de anagramara en ubuntu
