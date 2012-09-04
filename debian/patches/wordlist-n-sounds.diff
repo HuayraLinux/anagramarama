@@ -198,10 +198,10 @@ Index: anagramarama-0.4/makefile.linux
 +	rm -f $(OUT_FILE)
 +
 +install: $(OUT_FILE)
-+	mkdir -p $(DESTDIR)$(prefix)/bin
-+	install -m 755 $(OUT_FILE) $(DESTDIR)$(prefix)/bin
-+	mkdir -p $(DESTDIR)$(prefix)/share/anagramarama
-+	cp -R i18n $(DESTDIR)$(prefix)/share/anagramarama
-+	rm $(DESTDIR)$(prefix)/share/anagramarama/i18n/*/images/Thumbs.db
-+	cp -R audio $(DESTDIR)$(prefix)/share/anagramarama
++       mkdir -p $(DESTDIR)$(prefix)/share/games
++       install -m 755 $(OUT_FILE) $(DESTDIR)$(prefix)/share/games
++       mkdir -p $(DESTDIR)$(prefix)/share/games/anagramarama
++       cp -R i18n $(DESTDIR)$(prefix)/share/games/anagramarama
++       rm $(DESTDIR)$(prefix)/share/games/anagramarama/i18n/*/images/Thumbs.db
++       cp -R audio $(DESTDIR)$(prefix)/share/games/anagramarama
 \ No newline at end of file
