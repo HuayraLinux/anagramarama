@@ -38,7 +38,7 @@ License: GPL-2+
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
 
-Files: debian/anagramarama.{6, desktop, manpages}
+Files: debian/anagramarama.6 debian/anagramarama.desktop
 Copyright: 2006 Lukas Fittl <lfittl@ixios-software.com>
 License: GPL-1
  This package is free software; you can redistribute it and/or modify

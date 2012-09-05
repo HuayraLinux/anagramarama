@@ -1,8 +1,6 @@
 This patch allows anagramarama to load the files from usr/share/games following the Debian Policy.
-Index: anagramarama-0.4/src/ag.c
-===================================================================
---- anagramarama-0.4.orig/src/ag.c	2012-09-03 03:10:44.000000000 +0000
-+++ anagramarama-0.4/src/ag.c	2012-09-03 03:19:37.000000000 +0000
+--- a/src/ag.c
++++ b/src/ag.c
 @@ -104,13 +104,14 @@
  char shuffle[8] = SPACE_FILLED_CHARS;
  char answer[8]  = SPACE_FILLED_CHARS;
@@ -19,7 +17,7 @@ Index: anagramarama-0.4/src/ag.c
  
  time_t gameStart = 0;
  time_t gameTime = 0;
-@@ -249,15 +250,16 @@
+@@ -249,15 +250,21 @@
  static void
  bufferSounds(struct sound **soundCache)
  {
@@ -32,6 +30,11 @@ Index: anagramarama-0.4/src/ag.c
 -	pushSound(soundCache, "badword", "audio/badword.wav");
 -	pushSound(soundCache, "shuffle", "audio/shuffle.wav");
 -	pushSound(soundCache, "clock-tick", "audio/clock-tick.wav");
++
++#ifdef DEBUG
++	Debug("data_dir > %s", DATA_DIR);
++#endif
++
 +	pushSound(soundCache, "click-answer", DATA_DIR "audio/click-answer.wav");
 +	pushSound(soundCache, "click-shuffle", DATA_DIR "audio/click-shuffle.wav");
 +	pushSound(soundCache, "foundbig", DATA_DIR "audio/foundbig.wav");
@@ -45,7 +48,7 @@ Index: anagramarama-0.4/src/ag.c
  }
  
  /***********************************************************
-@@ -505,6 +507,7 @@
+@@ -505,6 +512,7 @@
  	}
  
  	if (!foundWord) {
@@ -53,7 +56,7 @@ Index: anagramarama-0.4/src/ag.c
  		Mix_PlayChannel(-1, getSound("badword"),0);
  	}
  }
-@@ -591,7 +594,12 @@
+@@ -591,7 +599,12 @@
  
  		switch(keyedLetter){
  
@@ -67,7 +70,7 @@ Index: anagramarama-0.4/src/ag.c
  				/* clear has been pressed */
  				clearGuess = 1;
  				break;
-@@ -772,6 +780,50 @@
+@@ -772,6 +785,50 @@
  
  
  /***********************************************************
@@ -118,7 +121,7 @@ Index: anagramarama-0.4/src/ag.c
  synopsis: display the score graphic
  
  inputs: screen - the SDL_Surface to display the image
-@@ -1482,6 +1534,13 @@
+@@ -1482,6 +1539,13 @@
  			clearGuess = 0;
  		}
  
@@ -132,17 +135,20 @@ Index: anagramarama-0.4/src/ag.c
  		if (quitGame) {
  			done = 1;
  		}
-@@ -1517,7 +1576,9 @@
+@@ -1517,7 +1581,12 @@
  	strcat(buffer, "wordlist.txt");
  	if ((fp = fopen(buffer, "r")) != NULL)
  		fclose(fp);
 +#ifdef DEBUG
++	Debug("path > %s", path);
++	Debug("data_dir > %s", DATA_DIR);
++	Debug("buffer > %s", buffer);
  	Debug("testing %s: %s", buffer, (fp == NULL)?"failed":"present");
 +#endif
  	return (fp != NULL);
  }
  
-@@ -1550,7 +1611,9 @@
+@@ -1550,7 +1619,9 @@
  	FILE *fp = NULL;
  	char line[80], *p;
  	if ((fp = fopen(path, "r")) != NULL) {
@@ -152,23 +158,28 @@ Index: anagramarama-0.4/src/ag.c
  		while (!feof(fp)) {
  			if ((p = fgets(line, sizeof(line), fp)) != NULL) {
  				int i;
-@@ -1584,6 +1647,7 @@
+@@ -1584,7 +1655,9 @@
  {
      char *lang = NULL, *p = NULL;
  
+-	strcpy(language,"i18n/");
++
 +	strcpy(language,DATA_DIR);
- 	strcpy(language,"i18n/");
++	strcat(language,"i18n/");
  	if (argc == 2) {
  		strcat(language, argv[1]);
-@@ -1593,6 +1657,7 @@
+         if (is_valid_locale(language))
+@@ -1593,7 +1666,8 @@
  
      lang = getenv("LANG");
      if (lang != NULL) {
+-        strcpy(language,"i18n/");
 +	    strcpy(language,DATA_DIR);
-         strcpy(language,"i18n/");
++        strcat(language,"i18n/");
          strcat(language, lang);
          if (is_valid_locale(language))
-@@ -1619,7 +1684,9 @@
+             return;
+@@ -1619,7 +1693,9 @@
          strcat(language, "_");
          GetLocaleInfo(lcid, LOCALE_SISO3166CTRYNAME, 
                        language + strlen(language), sizeof(language));
@@ -178,20 +189,26 @@ Index: anagramarama-0.4/src/ag.c
          if (is_valid_locale(language))
              return;
          *p = 0;
-Index: anagramarama-0.4/makefile.linux
-===================================================================
---- anagramarama-0.4.orig/makefile.linux	2012-09-03 03:10:44.000000000 +0000
-+++ anagramarama-0.4/makefile.linux	2012-09-03 03:10:44.000000000 +0000
+--- a/makefile.linux
++++ b/makefile.linux
 @@ -6,6 +6,8 @@
  CFLAGS +=-O9 -funroll-loops -fomit-frame-pointer
  LDFLAGS=`sdl-config --libs` -lSDL_mixer
  
-+override CFLAGS+=`sdl-config --cflags` -DDATA_DIR=\"$(prefix)/share/games/anagramarama/\"
++override CFLAGS+=`sdl-config --cflags` -DDATA_DIR=\"/usr/share/games/anagramarama/\"
 +
  ifdef DEBUG
  CFLAGS +=-g -DDEBUG -D_DEBUG
  endif
-@@ -47,3 +49,12 @@
+@@ -13,6 +15,7 @@
+ C_FILES=src/dlb.c src/linked.c src/sprite.c src/ag_core.c src/ag.c
+ OBJ_FILES=src/dlb.o src/linked.o src/sprite.o src/ag_core.o src/ag.o
+ TEST_OBJS=$(OBJ_FILES:src/ag.o=src/ag_test.o)
++OUT_FILE=ag
+ 
+ all:ag
+ 
+@@ -47,3 +50,12 @@
  clean:
  	rm -f src/*.o
  	rm -f test_ag test_agcore test_dlb test_linked
@@ -204,4 +221,3 @@ Index: anagramarama-0.4/makefile.linux
 +	cp -R i18n $(DESTDIR)usr/share/games/anagramarama
 +	rm $(DESTDIR)usr/share/games/anagramarama/i18n/*/images/Thumbs.db
 +	cp -R audio $(DESTDIR)usr/share/games/anagramarama
-\ No newline at end of file

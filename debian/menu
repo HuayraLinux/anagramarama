@@ -1,7 +1,7 @@
 ?package(anagramarama):\
 	needs="X11" \
-	section="Applications/Games" \
+	section="Games/Board" \
 	title="Anagramarama" \
-	command="Anagramarama" \
+	command="/usr/games/anagramarama" \
 	hints="Anagram" \
 	icon="/usr/share/pixmaps/ag.png"

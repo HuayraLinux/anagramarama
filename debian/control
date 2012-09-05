@@ -9,8 +9,8 @@ Homepage: https://github.com/Anagramarama/anagramarama
 Package: anagramarama
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: A multi-platform, multi-lingual anagram finding game.
- An anagram game, supports various languages and allows the player 
+Description: Multi-platform, multi-lingual anagram finding game
+ Anagram game, supports various languages and allows the player 
  to play anagrams.
  It detects automatically the language and uses a wordlist according
  to the one defined in the users' session.
