@@ -16,3 +16,15 @@ Description: Multi-platform, multi-lingual anagram finding game
  to the one defined in the users' session.
  .
  This package is part of the meta package 'conectar-apps-distro'.
+
+Package: anagramarama-data
+Architecture: all
+Replaces: anagramarama (<= 0.4-4)
+Depends: ${misc:Depends}
+Description: Multi-platform, multi-lingual anagram finding game
+ Anagram game, supports various languages and allows the player 
+ to play anagrams.
+ It detects automatically the language and uses a wordlist according
+ to the one defined in the users' session.
+ .
+ This package contains the data files for anagramarama.
