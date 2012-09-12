@@ -1,4 +1,4 @@
-anagramarama (0.4-5) UNRELEASED; urgency=low
+anagramarama (0.4-5) wizy; urgency=low
 
   * Dividi al paquete en dos: anagramarama y anagramarama-data.
     Este ultimo contiene archivos arch-indep.
