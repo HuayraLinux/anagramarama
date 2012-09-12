@@ -7,7 +7,6 @@ Standards-Version: 3.9.3
 Homepage: https://github.com/Anagramarama/anagramarama
 
 Package: anagramarama
-
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, anagramarama-data (= ${source:Version})
 Description: Multi-platform, multi-lingual anagram finding game
