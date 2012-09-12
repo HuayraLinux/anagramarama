@@ -1,5 +1,2 @@
 ag usr/games
-audio/ usr/share/games/anagramarama
-i18n/ usr/share/games/anagramarama
-debian/i18n usr/share/games/anagramarama
 debian/anagramarama.png usr/share/pixmaps
