@@ -1,8 +1,13 @@
+anagramarama (0.4-6) wizy; urgency=low
+
+  * anagramarama depende de anagramarama-data.
+
+ -- Mauro Lizaur <mauro@debian.org>  Wed, 12 Sep 2012 13:18:35 -0300
+
 anagramarama (0.4-5) wizy; urgency=low
 
   * Dividi al paquete en dos: anagramarama y anagramarama-data.
     Este ultimo contiene archivos arch-indep.
-  * anagramarama depende de anagramarama-data.
 
  -- Mauro Lizaur <mauro@debian.org>  Wed, 12 Sep 2012 11:37:31 -0300
 
