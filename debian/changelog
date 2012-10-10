@@ -1,3 +1,9 @@
+anagramarama (0.4-7) UNRELEASED; urgency=low
+
+  * Icono bonito para Anagramarama.
+
+ -- Mauro Lizaur <mauro@debian.org>  Wed, 10 Oct 2012 15:09:00 -0300
+
 anagramarama (0.4-6) wizy; urgency=low
 
   * anagramarama depende de anagramarama-data.
