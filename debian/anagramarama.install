@@ -1,3 +1,5 @@
 ag usr/games
 debian/anagramarama.png usr/share/pixmaps
+debian/anagramarama.xpm usr/share/pixmaps
+debian/anagramarama.svg usr/share/pixmaps
 debian/anagramarama.desktop usr/share/applications

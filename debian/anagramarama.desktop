@@ -7,4 +7,4 @@ Exec=anagramarama
 Terminal=false
 Categories=Game;KidsGame;LogicGame;
 Comment=A multi-platform, multi-lingual anagram finding game.
-Icon=
+Icon=/usr/share/pixmaps/anagramarama.svg
