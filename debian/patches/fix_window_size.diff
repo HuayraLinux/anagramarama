@@ -1,0 +1,11 @@
+--- a/src/ag.c
++++ b/src/ag.c
+@@ -400,7 +400,7 @@
+ 			listLetters = numLetters;
+ 		}
+ 
+-		if (numWords == 11){
++		if (numWords == 8){
+ 			numWords = 0;
+ 			acrossOffset += (listLetters * 18) + 9;
+ 			outerrect.y = 380;

@@ -1,2 +1,2 @@
 version=3
-http://githubredir.debian.net/github/Anagramarama/anagramarama /v(.*).tar.gz
+https://github.com/Anagramarama/anagramarama/tags .*/v(\d[\d\.]+)\.tar\.gz
